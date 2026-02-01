@@ -24,7 +24,7 @@ const TaskForm = ({ onSubmit, initialData, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <form onSubmit={handleSubmit} className="space-y-4">
       <Input
         label="Title"
         name="title"
@@ -32,37 +32,41 @@ const TaskForm = ({ onSubmit, initialData, onCancel }) => {
         onChange={handleChange}
         required
       />
+
       <Input
         label="Description"
         name="description"
         value={formData.description}
         onChange={handleChange}
       />
-      <div style={{ marginBottom: "12px" }}>
-        <label>Status</label>
+
+      <div>
+        <label className="block text-gray-300 mb-1">Status</label>
         <select
           name="status"
           value={formData.status}
           onChange={handleChange}
-          style={{
-            width: "100%",
-            padding: "8px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-          }}
+          className="w-full bg-white/10 backdrop-blur-lg border border-white/20 text-white rounded-lg p-2 outline-none"
         >
-          <option>Pending</option>
-          <option>In Progress</option>
-          <option>Completed</option>
+          <option className="bg-gray-900">Pending</option>
+          <option className="bg-gray-900">In Progress</option>
+          <option className="bg-gray-900">Completed</option>
         </select>
       </div>
-      <div style={{ display: "flex", gap: "10px" }}>
-        <Button type="submit">{initialData ? "Update" : "Add"} Task</Button>
+
+      <div className="flex gap-3 mt-4">
+        <Button
+          type="submit"
+          className="bg-gradient from-purple-500 to-blue-500 hover:opacity-90 text-white py-2 px-4 rounded-lg transition"
+        >
+          {initialData ? "Update" : "Add"} Task
+        </Button>
+
         {onCancel && (
           <Button
             type="button"
             onClick={onCancel}
-            style={{ backgroundColor: "#6b7280" }}
+            className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition"
           >
             Cancel
           </Button>
