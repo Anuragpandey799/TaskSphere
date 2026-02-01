@@ -1,0 +1,55 @@
+# ======== Node & Package Managers ========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ======== Vite / Frontend ========
+dist/
+dist-ssr/
+*.local
+.vite
+coverage/
+
+# ======== Environment Variables ========
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# ======== IDE / Editor ========
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ======== OS Files ========
+Thumbs.db
+
+# ======== Logs ========
+logs
+*.log
+
+# ======== Build & Cache ========
+.cache/
+.temp/
+tmp/
+
+# ======== MongoDB Compass / Local ========
+mongodb/
+dump/
+
+# ======== Optional: Testing ========
+coverage/
+jest/
+
+# ======== Optional: Backend ========
+/server/node_modules
+/server/.env
+/server/.env.local
