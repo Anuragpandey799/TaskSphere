@@ -6,7 +6,15 @@ import taskRoutes from "./routes/task.routes.js";
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+    {
+    origin: [
+      "https://task-sphere-vert.vercel.app/",
+      "https://tasksphere-1mf6.onrender.com/"
+    ],
+    credentials: true,
+  }
+));
 app.use(express.json());
 
 // Routes
