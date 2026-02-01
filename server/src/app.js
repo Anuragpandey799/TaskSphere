@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-app.options("*", cors());
+app.use(cors());
 
 // Routes
 app.use("/api/auth", authRoutes);
