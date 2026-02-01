@@ -6,7 +6,11 @@ import { registerUser } from "../../services/auth.service";
 import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -19,8 +23,9 @@ const Register = () => {
       const res = await registerUser(formData);
       login(res.data.user, res.data.token);
       navigate("/");
-    } catch (err) {
-      alert(err.response?.data?.message || "Registration failed");
+    } catch (error) {
+      console.error("Register error:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Registration failed");
     }
   };
 
@@ -29,8 +34,20 @@ const Register = () => {
       <h2>Create Account</h2>
       <form onSubmit={handleSubmit}>
         <Input label="Name" name="name" onChange={handleChange} required />
-        <Input label="Email" name="email" type="email" onChange={handleChange} required />
-        <Input label="Password" name="password" type="password" onChange={handleChange} required />
+        <Input
+          label="Email"
+          name="email"
+          type="email"
+          onChange={handleChange}
+          required
+        />
+        <Input
+          label="Password"
+          name="password"
+          type="password"
+          onChange={handleChange}
+          required
+        />
         <Button type="submit">Register</Button>
       </form>
       <p>

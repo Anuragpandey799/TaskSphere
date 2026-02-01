@@ -19,8 +19,9 @@ const Login = () => {
       const res = await loginUser(formData);
       login(res.data.user, res.data.token);
       navigate("/");
-    } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Registration failed");
     }
   };
 
@@ -28,8 +29,20 @@ const Login = () => {
     <div style={{ maxWidth: "400px", margin: "80px auto" }}>
       <h2>Login to TaskSphere</h2>
       <form onSubmit={handleSubmit}>
-        <Input label="Email" name="email" type="email" onChange={handleChange} required />
-        <Input label="Password" name="password" type="password" onChange={handleChange} required />
+        <Input
+          label="Email"
+          name="email"
+          type="email"
+          onChange={handleChange}
+          required
+        />
+        <Input
+          label="Password"
+          name="password"
+          type="password"
+          onChange={handleChange}
+          required
+        />
         <Button type="submit">Login</Button>
       </form>
       <p>

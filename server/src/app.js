@@ -5,23 +5,26 @@ import taskRoutes from "./routes/task.routes.js";
 
 const app = express();
 
-// Middleware
-app.use(cors(
-    {
-    origin: [
-      "https://task-sphere-vert.vercel.app/",
-      "https://tasksphere-1mf6.onrender.com/"
-    ],
-    credentials: true,
-  }
-));
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://task-sphere-vert.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.options("*", cors());
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Health check
+// Health
 app.get("/", (req, res) => {
   res.send("TaskSphere API is running");
 });
