@@ -1,14 +1,21 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-// Attach token to every request
 API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("taskSphere_token");
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
+  if (
+    !req.url.includes("/auth/login") &&
+    !req.url.includes("/auth/register")
+  ) {
+    const token = localStorage.getItem("taskSphere_token");
+    if (token) {
+      req.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return req;
 });
